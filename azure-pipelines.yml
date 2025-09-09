@@ -24,19 +24,20 @@ stages:
             inputs:
               terraformVersion: 'latest'
 
-          - task: TerraformTask@5
+          - script: |
             displayName: terraform init
-            inputs:
-              provider: 'aws'
-              command: 'init'
-              workingDirectory: '$(Build.SourcesDirectory)/eksInfraRepo'
-              backendServiceAWS: 'aws-svc'
+              cd $(Build.SourcesDirectory)/infraRepo
+              terraform init
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+              AWS_DEFAULT_REGION: $(AWS_DEFAULT_REGION)
 
-          - task: TerraformTask@5
+          - script: |
             displayName: terraform plan
-            inputs:
-              provider: 'aws'
-              command: 'plan'
-              workingDirectory: '$(Build.SourcesDirectory)/eksInfraRepo'
-              commandOptions: '--var-file=variables.tfvars'
-              environmentServiceNameAWS: 'aws-svc'
+              cd $(Build.SourcesDirectory)/infraRepo
+              terraform plan --var-file=variables.tfvars
+            env:
+              AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
+              AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+              AWS_DEFAULT_REGION: $(AWS_DEFAULT_REGION)
