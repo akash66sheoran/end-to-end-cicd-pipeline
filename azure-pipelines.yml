@@ -25,12 +25,14 @@ stages:
               terraformVersion: 'latest'
 
           - task: TerraformTask@5
+            displayName: terraform init
             inputs:
-              provider: 'azurerm'
+              provider: 'aws'
               command: 'init'
               workingDirectory: '$(Build.SourcesDirectory)/eksInfraRepo'
 
           - task: TerraformTask@5
+            displayName: terraform plan
             inputs:
               provider: 'aws'
               command: 'plan'
