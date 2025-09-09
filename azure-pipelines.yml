@@ -20,6 +20,11 @@ stages:
         steps:
           - checkout: eksInfraRepo
 
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: 'echo $(Build.SourcesDirectory)'
+
           - task: TerraformInstaller@1
             inputs:
               terraformVersion: 'latest'
