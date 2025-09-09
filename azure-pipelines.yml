@@ -30,6 +30,7 @@ stages:
               provider: 'aws'
               command: 'init'
               workingDirectory: '$(Build.SourcesDirectory)/eksInfraRepo'
+              backendServiceAWS: 'aws-svc'
 
           - task: TerraformTask@5
             displayName: terraform plan
