@@ -9,6 +9,8 @@ resources:
       type: github
       name: akash66sheoran/end-to-end-cicd-pipeline
       ref: main
+      endpoint: github-service-connection
+
 
 stages:
   - stage: terraform
