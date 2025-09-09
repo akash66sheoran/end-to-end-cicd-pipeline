@@ -7,7 +7,7 @@ resources:
   repositories:
     - repository: eksInfraRepo
       type: github
-      name: akash66sheoran/end-to-end-cicd-pipeline
+      name: akash66sheoran/tf-aws-eks
       ref: main
       endpoint: github-service-connection
 
